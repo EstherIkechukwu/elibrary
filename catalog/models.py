@@ -25,7 +25,7 @@ class Genre(models.Model):
         ("P", "POLITICS"),
         ("F", "FINANCE"),
     )
-    name = models.CharField(max_length=1, choices=GENRE_CHOICES, default="F")
+    name = models.CharField(max_length=1, choices=GENRE_CHOICES, default="F", unique=True)
 
     def __str__(self):
         return self.name
