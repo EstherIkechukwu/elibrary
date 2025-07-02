@@ -59,3 +59,6 @@ class BookInstance(models.Model):
     def __str__(self):
         return self.status
 
+class BookImage(models.Model):
+    image = models.ImageField(upload_to='book/images', blank=True)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
