@@ -12,7 +12,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=True, read_only=True)
     images = serializers.HyperlinkedRelatedField(
-        view_name='image-detail',
+        view_name='book-images-detail',
         queryset=BookImage.objects.all(),
     )
     # images = serializers.StringRelatedField(many=True, read_only=True)

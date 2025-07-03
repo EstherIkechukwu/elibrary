@@ -45,7 +45,6 @@ def image_detail(request, pk):
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
-    lookup_field = 'pk'
 
     def get_serializer_class(self):
         if self.request.method == 'PUT':

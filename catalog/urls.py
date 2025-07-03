@@ -24,5 +24,5 @@ urlpatterns = [
 
     path("greet/<name>", views.greet),
 
-    path("image/<int:pk>/", views.image_detail.as_view(), name="image-detail"),
+    path("image/<int:pk>/", views.image_detail, name="book-images-detail"),
 ]
