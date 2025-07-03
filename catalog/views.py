@@ -34,6 +34,15 @@ class GetUpdateDeleteAuthorView(RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
+def greet(request, name):
+    return render(request, 'index.html', context={'name': name})
+
+@api_view(['GET'])
+def image_detail(request, pk):
+    book_image = get_object_or_404(BookImage, pk=pk)
+    serializer = BookImageSerializer(book_image)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
 
@@ -67,11 +76,3 @@ def get_authors(request):
 #     author.delete()
 #     return Response(status=status.HTTP_204_NO_CONTENT)
 
-def greet(request, name):
-    return render(request, 'index.html', context={'name': name})
-
-@api_view(['GET'])
-def image_detail(request, pk):
-    book_image = get_object_or_404(BookImage, pk=pk)
-    serializer = BookImageSerializer(book_image)
-    return Response(serializer.data, status=status.HTTP_200_OK)
