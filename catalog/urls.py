@@ -2,11 +2,12 @@ from django.urls import path, include
 from . import views
 from rest_framework import routers
 
-from .views import BookViewSet
+from .views import BookViewSet, BookImageViewSet
 
 router = routers.DefaultRouter()
-
 router.register('books', BookViewSet, basename='books')
+
+router.register('images', BookImageViewSet, basename='images')
 
 print(router.urls)
 
