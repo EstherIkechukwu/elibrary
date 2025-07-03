@@ -26,6 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("catalog/", include("catalog.urls")),
 
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+
 ]
 
 if settings.DEBUG:
