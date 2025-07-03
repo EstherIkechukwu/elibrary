@@ -57,6 +57,9 @@ class BookImageViewSet(viewsets.ModelViewSet):
     queryset = BookImage.objects.all()
     serializer_class = BookImageSerializer
 
+    def get_serializer_context(self):
+        return {'book_id': self.kwargs['book_pk']}
+
 @api_view(['GET'])
 def get_authors(request):
     authors = Author.objects.all()
