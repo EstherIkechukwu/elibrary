@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from django.conf import settings
-from user.models import Author
+# from user.models import Author
 
 # Create your models here.
 
@@ -18,6 +18,16 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    dob = models.DateField(blank=False, null=False)
+    dod = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return self.first_name
 
 class Genre(models.Model):
     GENRE_CHOICES = (
@@ -62,3 +72,5 @@ class BookInstance(models.Model):
 class BookImage(models.Model):
     image = models.ImageField(upload_to='book/images', blank=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+

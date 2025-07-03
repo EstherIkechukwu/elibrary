@@ -13,9 +13,9 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
+            <name qname="library_db" />
             <name qname="@" />
             <name qname="elibrary_db" />
-            <name qname="library_db" />
           </node>
         </introspection-scope>
       </schema-mapping>

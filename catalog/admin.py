@@ -10,6 +10,16 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_per_page = 10
 
+@admin.register(models.BookImage)
+class BookImageAdmin(admin.ModelAdmin):
+    list_display = ['book', 'image']
+    list_display_links = ['image']
+
+@admin.register(models.Author)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name']
+    search_fields = ['first_name', 'last_name']
+
 @admin.register(models.Genre)
 class GenreAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -17,6 +27,9 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(models.Language)
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ['name']
+
+
+admin.site.register(models.BookInstance)
 
 
 
