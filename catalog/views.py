@@ -3,11 +3,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
-from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.response import Response
 
-from catalog.models import Book
-from catalog.serializers import BookSerializer, AuthorSerializer, AddBookSerializer
+from catalog.models import Book, BookImage
+from catalog.serializers import BookSerializer, AuthorSerializer, AddBookSerializer, BookImageSerializer
 from .models import Author
 
 
@@ -69,3 +69,9 @@ def get_authors(request):
 
 def greet(request, name):
     return render(request, 'index.html', context={'name': name})
+
+@api_view(['GET'])
+def image_detail(request, pk):
+    book_image = get_object_or_404(BookImage, pk=pk)
+    serializer = BookImageSerializer(book_image)
+    return Response(serializer.data, status=status.HTTP_200_OK)

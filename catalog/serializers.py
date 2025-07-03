@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Book, Author
+from .models import Book, Author, BookImage
+
 
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,7 +11,11 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class BookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=True, read_only=True)
-    images = serializers.StringRelatedField(many=True, read_only=True)
+    images = serializers.HyperlinkedRelatedField(
+        view_name='image-detail',
+        queryset=BookImage.objects.all(),
+    )
+    # images = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Book
@@ -21,3 +26,8 @@ class AddBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ['id','title','isbn', 'summary']
+
+class BookImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookImage
+        fields = ['id', 'image']

@@ -22,4 +22,6 @@ urlpatterns = [
     path("get/authors/", views.get_authors, name="get_authors"),
 
     path("greet/<name>", views.greet),
+
+    path("image/<int:pk>/", views.image_detail.as_view(), name="image-detail"),
 ]
