@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eae3a624-2cbf-47a5-9dae-8274bb4930b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="eae3a624-2cbf-47a5-9dae-8274bb4930b7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +56,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\django-projects\Elibrary\Elibrary\settings" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Elibrary" type="Python.DjangoServer" factoryName="Django server">
       <module name="Elibrary" />
@@ -102,7 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750064468911</updated>
       <workItem from="1750064470075" duration="33178000" />
-      <workItem from="1751449612281" duration="60188000" />
+      <workItem from="1751449612281" duration="62677000" />
     </task>
     <servers />
   </component>
