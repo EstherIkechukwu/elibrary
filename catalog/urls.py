@@ -26,6 +26,8 @@ urlpatterns = [
 
     path("image/<int:pk>/", views.image_detail, name="book-images-detail"),
 
+    path("borrow-books/<int:pk>/", views.borrow_book, "borrow-book"),
+
     # path("update/authors/<int:pk>", views.update_author, name="update_author"),
     # path("delete/authors/<int:pk>", views.delete_author, name="delete_author"),
     path("get/authors/", views.get_authors, name="get_authors"),

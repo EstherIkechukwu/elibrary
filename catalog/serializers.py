@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Book, Author, BookImage
+from .models import Book, Author, BookImage, BookInstance
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -36,4 +36,9 @@ class BookImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookImage
         fields = ['id', 'image']
+
+class BookInstanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookInstance
+        fields = ['return_date', 'comments']
 

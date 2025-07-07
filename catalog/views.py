@@ -2,12 +2,14 @@ from django.core.serializers import serialize
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import status, viewsets
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from catalog.models import Book, BookImage
-from catalog.serializers import BookSerializer, AuthorSerializer, AddBookSerializer, BookImageSerializer
+from catalog.models import Book, BookImage, BookInstance
+from catalog.serializers import BookSerializer, AuthorSerializer, AddBookSerializer, BookImageSerializer, \
+    BookInstanceSerializer
 from .models import Author
 
 
@@ -25,6 +27,12 @@ def get_books(request):
 #     author.is_valid(raise_exception=True)
 #     author.save()
 #     return Response(author.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+def get_authors(request):
+    authors = Author.objects.all()
+    serializer = AuthorSerializer(authors, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 class AddAuthorView(ListCreateAPIView):
     queryset = Author.objects.all()
@@ -64,11 +72,20 @@ class BookImageViewSet(viewsets.ModelViewSet):
             raise ValueError("book_id missing in kwargs!")
         serializer.save(book_id=book_id)
 
-@api_view(['GET'])
-def get_authors(request):
-    authors = Author.objects.all()
-    serializer = AuthorSerializer(authors, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+def borrow_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    user = request.user
+    data = BookInstanceSerializer(data=request.data)
+    data.is_valid(raise_exception=True)
+    book_instance = BookInstance()
+    book_instance.user = user
+    book_instance.book = book
+    book_instance.return_date = data.validated_data['return_date']
+    book_instance.comments = data.validated_data['comments']
+    book_instance.save()
+    return Response({"message": "book borrowed successfully"}, status=status.HTTP_200_OK)
 
 # @api_view(['PUT', 'PATCH'])
 # def update_author(request, id):
