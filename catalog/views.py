@@ -1,3 +1,6 @@
+import smtplib
+from urllib.error import HTTPError
+
 from django.core.mail import send_mail
 from django.core.serializers import serialize
 from django.shortcuts import render
@@ -92,10 +95,13 @@ def borrow_book(request, pk):
                     The request to borrow book  {book.title} is successful, you can pick from the admin desk"""
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = ['user.email']
-    send_mail(subject=subject,
+    try:
+        send_mail(subject=subject,
               message=message,
               from_email=from_email,
               recipient_list=recipient_list)
+    except smtplib.SMTPAuthenticationError as e:
+        return Response({'message': f'{e}'}, status=status.HTTP_406_NOT_ACCEPTABLE)
     return Response({"message": "book borrowed successfully"}, status=status.HTTP_200_OK)
 
 
