@@ -1,5 +1,7 @@
+from django.core.mail import send_mail
 from django.core.serializers import serialize
 from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
@@ -79,13 +81,35 @@ def borrow_book(request, pk):
     user = request.user
     data = BookInstanceSerializer(data=request.data)
     data.is_valid(raise_exception=True)
-    book_instance = BookInstance()
-    book_instance.user = user
-    book_instance.book = book
-    book_instance.return_date = data.validated_data['return_date']
-    book_instance.comments = data.validated_data['comments']
-    book_instance.save()
+    BookInstance.objects.create(
+        user=user,
+        book=book,
+        comments= data.validated_data['comments'],
+        return_date=data.validated_data['return_date'],
+    )
+    subject = "Notification from ELibrary"
+    message = f"""
+                    The request to borrow book  {book.title} is successful, you can pick from the admin desk"""
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = ['user.email']
+    send_mail(subject=subject,
+              message=message,
+              from_email=from_email,
+              recipient_list=recipient_list)
     return Response({"message": "book borrowed successfully"}, status=status.HTTP_200_OK)
+
+
+    # book = get_object_or_404(Book, pk=pk)
+    # user = request.user
+    # data = BookInstanceSerializer(data=request.data)
+    # data.is_valid(raise_exception=True)
+    # book_instance = BookInstance()
+    # book_instance.user = user
+    # book_instance.book = book
+    # book_instance.return_date = data.validated_data['return_date']
+    # book_instance.comments = data.validated_data['comments']
+    # book_instance.save()
+    # return Response({"message": "book borrowed successfully"}, status=status.HTTP_200_OK)
 
 # @api_view(['PUT', 'PATCH'])
 # def update_author(request, id):

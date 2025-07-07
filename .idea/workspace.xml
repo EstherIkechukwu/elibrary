@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eae3a624-2cbf-47a5-9dae-8274bb4930b7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elibrary/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Elibrary/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/views.py" afterDir="false" />
     </list>
@@ -44,6 +45,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
@@ -103,7 +105,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750064468911</updated>
       <workItem from="1750064470075" duration="33178000" />
-      <workItem from="1751449612281" duration="48500000" />
+      <workItem from="1751449612281" duration="58886000" />
     </task>
     <servers />
   </component>
